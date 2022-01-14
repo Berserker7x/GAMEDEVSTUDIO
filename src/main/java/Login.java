@@ -34,17 +34,18 @@ public class Login extends HttpServlet {
         HttpSession session = request.getSession();
 
         String driver = "com.mysql.jdbc.Driver";
+        Connection conn =null;
 
         try {
             // étape 1: charger la classe de driver
             Class.forName(driver);
 
             // étape 2: créer l'objet de connexion
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/gamedevstudio", "root", "");
+            conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/gamedevstudio", "root", "");
 
             // étape 3: créer l'objet statement
             Statement stmt = conn.createStatement();
-            ResultSet res = stmt.executeQuery("SELECT  email, mdp ,rectouconcept FROM user");
+            ResultSet res = stmt.executeQuery("SELECT  email, mdp ,rectouconcept FROM user ");
 
             // étape 4: exécuter la requête
 
@@ -58,19 +59,17 @@ public class Login extends HttpServlet {
                 //System.out.println("Admin_Username : " + res.getString(1) + " && Admin_Password : " + res.getString(2));
                 if (email1.equals(email1) && mdp.equals(truePassword)) {
 
-                    if(pge.equals(" recruteur")){
-                     //   System.out.println(email1+truePassword+pge);
+                    if (pge.equals(" recruteur")) {
+                        //   System.out.println(email1+truePassword+pge);
                         response.sendRedirect("dashboard.jsp");
 
-                    }
-                    else{
-                        response.sendRedirect("dddd.jsp");
-                    }
+                    } else if (pge.equals(" Un concepteur de jeux")) {
+                        response.sendRedirect("gamedeveloper.jsp");
 
-                }
-                else {
-                    session.setAttribute("errorMsg", "Vous avez saisie des données érronées");
-                    response.sendRedirect("index.jsp");
+                    } else {
+                        session.setAttribute("errorMsg", "Vous avez saisie des données érronées");
+                        response.sendRedirect("index.jsp");
+                    }
                 }
 
 
@@ -89,4 +88,3 @@ public class Login extends HttpServlet {
     }
 
 }
-
