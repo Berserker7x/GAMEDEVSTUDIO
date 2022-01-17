@@ -44,7 +44,7 @@
                 <div class="d-flex align-items-center"><label class="form-label d-flex mb-0" for="search-field"><i class="fa fa-search"></i></label><input style="width:600px" class="form-control search-field" type="search" id="search-field" name="search"></div>
             </form><a class="btn btn-warning action-button" role="button" href="#">rechercher</a>
 
-
+            <a style="margin-left: 10px;" class="btn btn-success action-button" role="button" href="#">consulter les postulations</a>
             <a style="margin-left: 10px;" href="deconnexion.jsp"  class="btn btn-danger">Deconnexion</a>
         </div>
     </div>
@@ -58,7 +58,7 @@
 
     String driver = "com.mysql.jdbc.Driver";
     String con = "jdbc:mysql://localhost:3306/gamedevstudio";
-    String req = "select * from offre ";
+    String req = "select * from user ";
 
     String img = null;
     Blob image = null;
@@ -82,19 +82,19 @@
 
                 System.out.println("La connexion a était bien établit!!");
 
-                String Titre = res.getString(2);
-                String descrr = res.getString(3);
-                String dateexpp = res.getString(4);
-                image = res.getBlob(5);
+                String username = res.getString(4);
+                String Description = res.getString(9);
+                String fct = res.getString(8);
+                image = res.getBlob(10);
                 imgData = image.getBytes(1, (int) image.length());
                 String encodedImage = Base64.getEncoder().encodeToString(imgData);
                 img = "data:image/jpg;base64," + encodedImage;
                 out.print(
                         "<center> <div class='m-4 '> <div class='card' style='width: 500px; border-color: black !important'> <div class='row g-0'> <div class='col-sm-5' style='border-radius: 50% !important; width: 35%'> <img src="+img+" class='card-img-top h-100' alt='...'> </div> <div class='col-sm-7'> <div class='card-body'>");
 
-                out.print("<h4 class='card-title'>" + Titre + "</h4>"
-                        + "<p class='card-text'><b style='color:blue'>Description :</b> " + descrr
-                        + "<br> <b style='color:red'>date d'expiration: </b>" + dateexpp + "</p>" + "<a href='#' class='btn btn-primary stretched-link'> contacter </a>"
+                out.print("<h4 class='card-title'>" + username + "</h4>"
+                        + "<p class='card-text'><b style='color:blue'>Description :</b> " + Description
+                        + "<br> <b style='color:red'>Fonction: </b>" + fct + "</p>" + "<a href='#' class='btn btn-primary stretched-link'> contacter </a>"
                         + "</td></tr></div> </div> </div> </center>");
 
 

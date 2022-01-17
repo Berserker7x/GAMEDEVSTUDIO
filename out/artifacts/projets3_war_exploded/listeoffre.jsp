@@ -1,3 +1,11 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Yasser
+  Date: 1/17/2022
+  Time: 2:51 PM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.io.InputStream" %>
 <%@ page import="java.io.FileOutputStream" %>
 <%@ page import="java.io.OutputStream" %>
@@ -22,84 +30,87 @@
 <body style=" background-image: url('https://gamingbolt.com/wp-content/uploads/2020/09/xbox-series-s-image-5.jpg');"    >
 
 
-    <nav class="navbar navbar-light navbar-expand-lg navigation-clean-search">
-        <div class="container"><a class="navbar-brand" href="#"><img 
-      src = "https://images.frandroid.com/wp-content/uploads/2021/07/android-game-dev-kit-scaled.jpg"  
-     style="width:150px"/>&nbsp; &nbsp;&nbsp;</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navcol-1">
-                <ul class="navbar-nav">
-                    <li class="nav-item"></li>
-                    <li class="nav-item"></li>
-                    <li class="nav-item"><a class="nav-link" href="#"></a></li>
-                </ul>
-                <form class="me-auto search-form" target="_self">
-                    <div class="d-flex align-items-center"><label class="form-label d-flex mb-0" for="search-field"><i class="fa fa-search"></i></label><input style="width:600px" class="form-control search-field" type="search" id="search-field" name="search"></div>
-                </form><a class="btn btn-light action-button" role="button" href="#">rechercher</a>
-            </div>
+<nav class="navbar navbar-light navbar-expand-lg navigation-clean-search">
+    <div class="container"><a class="navbar-brand" href="#"><img
+            src = "https://images.frandroid.com/wp-content/uploads/2021/07/android-game-dev-kit-scaled.jpg"
+            style="width:150px"/>&nbsp; &nbsp;&nbsp;</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="navbar-nav">
+                <li class="nav-item"></li>
+                <li class="nav-item"></li>
+                <li class="nav-item"><a class="nav-link" href="#"></a></li>
+            </ul>
+            <form class="me-auto search-form" target="_self">
+                <div class="d-flex align-items-center"><label class="form-label d-flex mb-0" for="search-field"><i class="fa fa-search"></i></label><input style="width:600px" class="form-control search-field" type="search" id="search-field" name="search"></div>
+            </form><a class="btn btn-warning action-button" role="button" href="#">rechercher</a>
+
+
+            <a style="margin-left: 10px;" href="deconnexion.jsp"  class="btn btn-danger">Deconnexion</a>
         </div>
-    </nav>
-
-
-
-
-
-        <%
-
-            String driver = "com.mysql.jdbc.Driver";
-            String con = "jdbc:mysql://localhost:3306/gamedevstudio";
-            String req = "select * from offre ";
-
-            try {
-                // étape 1: charger la classe de driver
-                Class.forName(driver);
-
-                // étape 2: créer l'objet de connexion
-                Connection conn = DriverManager.getConnection(con, "root", "");
-
-                // étape 3: créer l'objet statement
-
-                PreparedStatement stmt = conn.prepareStatement(req);
-
-                ResultSet res = stmt.executeQuery();
-                // étape 4: exécuter la requête
-                if (res.next()) {
-                    do {
-
-                        System.out.println("La connexion a était bien établit!!");
-
-                        String titre = res.getString(2);
-                        String Description = res.getString(3);
-                        String Date = res.getString(4);
-                        String image = res.getString(5);
-
-
-
-
-
-
-
-                        out.print(
-                                "<center> <div class='m-4 '> <div class='card' style='width: 500px; border-color: black !important'> <div class='row g-0'> <div class='col-sm-5' style='border-radius: 50% !important; width: 35%'> <img src="+image+" class='card-img-top h-100' alt='...'> </div> <div class='col-sm-7'> <div class='card-body'>");
-
-                        out.print("<h4 class='card-title'>" + titre + "</h4>"
-                                + "<p class='card-text'><b style='color:blue'>Description :</b> " + Description
-                                + "<br> <b style='color:red'>Date d 'expiration: </b>" + Date + "</p>" + "<a href='#' class='btn btn-primary stretched-link'> Postuler</a>"
-                                + "</td></tr></div> </div> </div> </center>");
-
-
-                    } while (res.next());
-
-                } else {
-                }
-                // étape 5: fermez l'objet de connexion
-                conn.close();
-            } catch (Exception e) {
-                System.out.println(e);
-            }
-        %>
-
     </div>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</nav>
+
+
+
+
+
+<%
+
+    String driver = "com.mysql.jdbc.Driver";
+    String con = "jdbc:mysql://localhost:3306/gamedevstudio";
+    String req = "select * from offre ";
+
+    String img = null;
+    Blob image = null;
+    byte[] imgData = null;
+
+    try {
+        // étape 1: charger la classe de driver
+        Class.forName(driver);
+
+        // étape 2: créer l'objet de connexion
+        Connection conn = DriverManager.getConnection(con, "root", "");
+
+        // étape 3: créer l'objet statement
+
+        PreparedStatement stmt = conn.prepareStatement(req);
+
+        ResultSet res = stmt.executeQuery();
+        // étape 4: exécuter la requête
+        if (res.next()) {
+            do {
+
+                System.out.println("La connexion a était bien établit!!");
+
+                String Titre = res.getString(2);
+                String descrr = res.getString(3);
+                String dateexpp = res.getString(4);
+                image = res.getBlob(5);
+                imgData = image.getBytes(1, (int) image.length());
+                String encodedImage = Base64.getEncoder().encodeToString(imgData);
+                img = "data:image/jpg;base64," + encodedImage;
+                out.print(
+                        "<center> <div class='m-4 '> <div class='card' style='width: 500px; border-color: black !important'> <div class='row g-0'> <div class='col-sm-5' style='border-radius: 50% !important; width: 35%'> <img src="+img+" class='card-img-top h-100' alt='...'> </div> <div class='col-sm-7'> <div class='card-body'>");
+
+                out.print("<h4 class='card-title'>" + Titre + "</h4>"
+                        + "<p class='card-text'><b style='color:blue'>Description :</b> " + descrr
+                        + "<br> <b style='color:red'>date d'expiration: </b>" + dateexpp + "</p>" + "<a href='#' class='btn btn-primary stretched-link'> contacter </a>"
+                        + "</td></tr></div> </div> </div> </center>");
+
+
+            } while (res.next());
+
+        } else {
+        }
+        // étape 5: fermez l'objet de connexion
+        conn.close();
+    } catch (Exception e) {
+        System.out.println(e);
+    }
+%>
+
+</div>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>

@@ -17,7 +17,7 @@
 
 
 <div style="width:50%"  >
-    <form method="post" action="Posteoffre">
+    <form method="post" action="Posteoffre" ENCTYPE="multipart/form-data">
 
 
     <section class="contact-clean">
@@ -31,13 +31,15 @@
             </div>
             <input name="dateexp" class="form-control" type="date"><strong style="color:red" class="form-text">Date d'expiration de l'offre</strong>
 
-            <div class="mb-3"></div><input name="imgurl" class="form-control" placeholder="Url de votre image">
-            <button class="btn btn-primary pull-right" type="submit">Poster
-        </button>
+            <div class="mb-3"></div><input  type="file"  name="imaja" class="form-control">
+
 
 
         </form>
-        <button style="float: right" class="btn btn-primary" type="button"><a style="color: white" href="recrutdashboard.jsp">annuler</a>  </button>
+        <button  style="margin-top: 15px; margin-left:500px " class="btn btn-primary pull-right" type="submit">Poster
+        </button>
+
+        <button style="float: right; margin-top: 15px;" class="btn btn-primary" type="button"><a style="color: white" href="recrutdashboard.jsp">annuler</a>  </button>
     </div>
 </center>
 

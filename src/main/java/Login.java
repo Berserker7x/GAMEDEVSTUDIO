@@ -66,9 +66,9 @@ public class Login extends HttpServlet {
                 userid=res.getString(4);
                 System.out.println(email1+truePassword+pge+userid);
                 //System.out.println("Admin_Username : " + res.getString(1) + " && Admin_Password : " + res.getString(2));
-                if (email1.equals(email1) && mdp.equals(truePassword)) {
+                if (email.equals(email1) && mdp.equals(truePassword)) {
 
-                    if (pge.equals(" recruteur")) {
+                    if (pge.equals("recruteur")) {
 
                         //   System.out.println(email1+truePassword+pge);
                      //   request.setAttribute("userird",userid2);
@@ -79,7 +79,7 @@ public class Login extends HttpServlet {
 
                         requestDispatcher.forward(request, response);
 
-                    } else if (pge.equals(" Un concepteur de jeux")) {
+                    } else if (pge.equals("Un concepteur de jeux")) {
                         session.setAttribute("userid", userid);
                         System.out.println(userid);
 

@@ -26,10 +26,11 @@ public class Gerercompte extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         String driver = "com.mysql.jdbc.Driver";
+        HttpSession session=request.getSession();
 
-      //  request.getAttribute("userid2");
+          String userid = (String) session.getAttribute("userid");
        // teeeeest
-        String userid="yazer";
+       // String userid="yazer";
         //khdama
         String req = "UPDATE `user` SET  username=\""+nvusernamee+"\",`email`=\""+nvemaile+"\",`mdp`=\""+nvpassword+"\"  WHERE `username`=\""+userid+"\";";
         String con = "jdbc:mysql://localhost:3306/gamedevstudio";

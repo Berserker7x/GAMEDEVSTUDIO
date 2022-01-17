@@ -27,7 +27,7 @@
 
 <body>
 <div class="login-form" style="padding-top:7%;">
-    <form action="<%=request.getContextPath()%>/Registration" method="post">
+    <form action="<%=request.getContextPath()%>/Registration"  ENCTYPE="multipart/form-data" method="post">
         <div>
             <center><img src="logo.png" width="25%"></center>
         </div>
@@ -94,13 +94,30 @@
                 <div class="col-7" style="padding-top:15px ">
 
                     <select  id="fctconcepteur" name="fctconcepteur" class="custom-select" required="required">
+                        <option value="tester">recruteur</option>
                         <option value="Developpeur">Developpeur</option>
                         <option value="Designer">Designer</option>
                         <option value="tester">Tester</option>
 
                     </select>
+
+
             </div>
             </div>
+        <div class="form-group row">
+            <label for="desc" class="col-5 col-form-label">Description</label>
+            <div class="col-7">
+                <input id="desc" name="descr" type="text" class="form-control" required="required"
+                       placeholder="description de vos compétences">
+            </div>
+
+
+        <label for="avatar">Choisir une image de profile si vous etes un concepteur:</label>
+            <br>
+
+        <input type="file"
+               id="avatar" name="avatar"
+               accept="image/png, image/jpeg">
 
 
 
