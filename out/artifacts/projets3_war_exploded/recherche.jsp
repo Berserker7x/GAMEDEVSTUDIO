@@ -1,3 +1,4 @@
+
 <%--
   Created by IntelliJ IDEA.
   User: Yasser
@@ -40,33 +41,22 @@
                 <li class="nav-item"></li>
                 <li class="nav-item"><a class="nav-link" href="#"></a></li>
             </ul>
-            <form style="display: flex; "  action="recherche.jsp"  method="post" class="me-auto search-form" target="_self">
-
+            <form action="recherche.jsp"  method="post" class="me-auto search-form" target="_self">
                 <div class="d-flex align-items-center"><label class="form-label d-flex mb-0" for="search-field"><i class="fa fa-search"></i></label><input style="width:600px" class="form-control search-field" type="search" id="search-field" name="search"></div>
-
-
-                <button style="margin-left: 200px;" class="btn btn-warning action-button" type="submit" role="button" href="#">rechercher</button>
-            </form>
+            </form><a class="btn btn-warning action-button" role="button" href="#">rechercher</a>
 
 
             <a style="margin-left: 10px;" href="deconnexion.jsp"  class="btn btn-danger">Deconnexion</a>
         </div>
     </div>
 </nav>
-
-
-
-
-
-<%
-
+ <%
     String driver = "com.mysql.jdbc.Driver";
     String con = "jdbc:mysql://localhost:3306/gamedevstudio";
-    String req = "select * from offre ";
-
-    String img = null;
-    Blob image = null;
-    byte[] imgData = null;
+    String req = "select * from offre where titre = ? ";
+     String img = null;
+     Blob image = null;
+     byte[] imgData = null;
 
     try {
         // étape 1: charger la classe de driver
@@ -78,7 +68,7 @@
         // étape 3: créer l'objet statement
 
         PreparedStatement stmt = conn.prepareStatement(req);
-
+        stmt.setString(1, request.getParameter("search"));//remplissage
         ResultSet res = stmt.executeQuery();
         // étape 4: exécuter la requête
         if (res.next()) {
@@ -86,21 +76,28 @@
 
                 System.out.println("La connexion a était bien établit!!");
 
-                String Titre = res.getString(2);
-                String descrr = res.getString(3);
-                String dateexpp = res.getString(4);
+
+
+                String titre = res.getString(2);
+                String description = res.getString(3);
+                String dateexp = res.getString(4);
+
+              //  String imageUrl = res.getString(2);
                 image = res.getBlob(5);
                 imgData = image.getBytes(1, (int) image.length());
                 String encodedImage = Base64.getEncoder().encodeToString(imgData);
                 img = "data:image/jpg;base64," + encodedImage;
+
                 out.print(
-                        "<center> <div class='m-4 '> <div class='card' style='width: 500px; border-color: black !important'> <div class='row g-0'> <div class='col-sm-5' style='border-radius: 50% !important; width: 35%'> <img src="+img+" class='card-img-top h-100' alt='...'> </div> <div class='col-sm-7'> <div class='card-body'>");
+                        "<center> <div class='m-4 '> <div class='card' style='width: 500px; border-color: black !important'> <div class='row g-0'> <div class='col-sm-5' style='border-radius: 50% !important; width: 35%'> <img src="
+                                +img
+                                + " class='card-img-top h-100' alt='...'> </div> <div class='col-sm-7'> <div class='card-body'>");
 
-                out.print("<h4 class='card-title'>" + Titre + "</h4>"
-                        + "<p class='card-text'><b style='color:blue'>Description :</b> " + descrr
-                        + "<br> <b style='color:red'>date d'expiration: </b>" + dateexpp + "</p>" + "<a href='#' class='btn btn-primary stretched-link'> contacter </a>"
+                out.print("<h4 class='card-title'>"+titre+"</h4>"
+                        +"<p class='card-text'><b style='color:red'>Description :</b> "+description
+                        +"<br> <b style='color:red'>Date d'expiration : </b>" +dateexp+"<br>"+
+                      "</p>"+"<a href='#' class='btn btn-primary stretched-link'> Postuler</a>"
                         + "</td></tr></div> </div> </div> </center>");
-
 
             } while (res.next());
 

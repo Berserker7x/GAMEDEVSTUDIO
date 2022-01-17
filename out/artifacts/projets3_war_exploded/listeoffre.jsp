@@ -40,9 +40,13 @@
                 <li class="nav-item"></li>
                 <li class="nav-item"><a class="nav-link" href="#"></a></li>
             </ul>
-            <form class="me-auto search-form" target="_self">
+            <form style="display: flex; "  action="recherche.jsp"  method="post" class="me-auto search-form" target="_self">
+
                 <div class="d-flex align-items-center"><label class="form-label d-flex mb-0" for="search-field"><i class="fa fa-search"></i></label><input style="width:600px" class="form-control search-field" type="search" id="search-field" name="search"></div>
-            </form><a class="btn btn-warning action-button" role="button" href="#">rechercher</a>
+
+
+                <button style="margin-left: 200px;" class="btn btn-warning action-button" type="submit" role="button" href="#">rechercher</button>
+            </form>
 
 
             <a style="margin-left: 10px;" href="deconnexion.jsp"  class="btn btn-danger">Deconnexion</a>
