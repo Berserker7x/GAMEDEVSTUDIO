@@ -23,6 +23,7 @@ import jakarta.servlet.http.HttpSession;
 
 public class Login extends HttpServlet {
      public String userid;
+   // public String userid2;
 
     public Login() {
 
@@ -70,7 +71,8 @@ public class Login extends HttpServlet {
                     if (pge.equals(" recruteur")) {
 
                         //   System.out.println(email1+truePassword+pge);
-                        request.setAttribute("userid", userid);
+                     //   request.setAttribute("userird",userid2);
+                        session.setAttribute("userid", userid);
                         System.out.println(userid);
 
                         RequestDispatcher requestDispatcher = request.getRequestDispatcher("recrutdashboard.jsp");
@@ -78,10 +80,11 @@ public class Login extends HttpServlet {
                         requestDispatcher.forward(request, response);
 
                     } else if (pge.equals(" Un concepteur de jeux")) {
-                        request.setAttribute("userid", userid);
+                        session.setAttribute("userid", userid);
                         System.out.println(userid);
 
                         RequestDispatcher requestDispatcher = request.getRequestDispatcher("gamedeveloper.jsp");
+
 
                         requestDispatcher.forward(request, response);
                     } else {
