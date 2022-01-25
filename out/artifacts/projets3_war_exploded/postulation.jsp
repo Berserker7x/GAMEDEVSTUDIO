@@ -42,7 +42,7 @@
         </ul>
         <form style="display: flex; margin-left: 200px;"  action="recherche.jsp"  method="post" class="me-auto search-form" target="_self">
 
-            <div class="d-flex align-items-center"><label class="form-label d-flex mb-0" for="search-field"><i class="fa fa-search"></i></label><input  style="width:600px" class="form-control search-field" type="search" id="search-field" name="search"></div>
+
 
 
 
@@ -66,11 +66,13 @@
 
         <%
 
+
             String driver = "com.mysql.jdbc.Driver";
 
             String con = "jdbc:mysql://localhost:3306/gamedevstudio";
             String nomr= (String) session.getAttribute("userid");
-            String req = "select * from postulations where nom_recruteur=?";
+            String username = (String) session.getAttribute("userid");
+            String req = "select * from `postulations` where nom_recruteur=\""+username+"\"";
 
 
 
@@ -84,7 +86,7 @@
                 // étape 3: créer l'objet statement
 
                 PreparedStatement stmt = conn.prepareStatement(req);
-                stmt.setString(1,nomr);
+               // stmt.setString(1,nomr);
 
                 ResultSet res = stmt.executeQuery();
                 // étape 4: exécuter la requête
@@ -101,7 +103,9 @@
                                 + "<p class='card-text'><b style='color:blue'>Postuler par :</b> " + postuler_par
                                 + "<br> <b style='color:red'>Nom recruteur: </b>" + nom_recruteur + "</p>" +"<div style=\"display:flex; margin-left:50px;\"><form action='Acceptation' method='post'>"+"<input value='"+postuler_par+"' type=\"hidden\"  name='userid'/>"+
                                 "<input value='"+nom_recruteur+"' type=\"hidden\"   name='recruteur'/>"+
-                                "<input value='"+nom_offre+"' type=\"hidden\"  name='Titre'/>"+"<button  class=\"btn btn-success\" style=\"margin-right:3px\"   type='submit'> Accepter </button></form>"+"<form action='Refus' method='post'><button class=\"btn btn-danger\"    type='submit'> refuser </button></form></div>"
+                                "<input value='"+nom_offre+"' type=\"hidden\"  name='Titre'/>"+"<button  class=\"btn btn-success\" style=\"margin-right:3px\"   type='submit'> Accepter </button>   <input style='margin-top:6%; width:165px; margin-left:15px;' class=\"form-control\" type=\"text\" name=\"Message\" placeholder=\"Message d'acceptation \" /></form>"+"<form action='Refus' method='post'> <input value='"+postuler_par+"' type=\"hidden\"  name='userid'/>" +
+                                "                                <input value='"+nom_recruteur+"' type=\"hidden\"   name='recruteur'/>" +
+                                "                                <input value='"+nom_offre+"' type=\"hidden\"  name='Titre'/><button class=\"btn btn-danger\"    type='submit'> refuser </button></form></div>"
                                 + "</td></tr></div> </div> </div> </center>");
 
 

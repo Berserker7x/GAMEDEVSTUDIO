@@ -22,7 +22,7 @@
         <div class="row justify-content-center features">
             <div class="col-sm-6 col-md-5 col-lg-4 item">
                 <div   class="box"><i class="fa fa-list-alt icon"></i>
-                    <h3 class="name"> Boite de reception</h3> <button    class="btn btn-primary" type="button"> <a style="color: white" href="Creeroffre.jsp">creer</a></button>
+                    <h3 class="name"> Boite de reception</h3> <button    class="btn btn-primary" type="button"> <a style="color: white" href="Boite.jsp">creer</a></button>
                 </div>
             </div>
             <div class="col-sm-6 col-md-5 col-lg-4 item">

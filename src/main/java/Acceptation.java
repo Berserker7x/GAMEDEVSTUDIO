@@ -23,7 +23,7 @@ public class Acceptation extends HttpServlet {
             String nomrecru = request.getParameter("recruteur");
             String Titre = request.getParameter("Titre");
 
-            String Message = "Vous etes accepté";
+            String Message =request.getParameter("Message");
 
             String driver = "com.mysql.jdbc.Driver";
             Connection conn = null;
