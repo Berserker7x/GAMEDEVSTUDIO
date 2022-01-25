@@ -22,7 +22,7 @@
         <div class="row justify-content-center features">
             <div class="col-sm-6 col-md-5 col-lg-4 item">
                 <div   class="box"><i class="fa fa-list-alt icon"></i>
-                    <h3 class="name">Creer un poste&nbsp;</h3> <button    class="btn btn-primary" type="button"> <a style="color: white" href="Creeroffre.jsp">creer</a></button>
+                    <h3 class="name"> Boite de reception</h3> <button    class="btn btn-primary" type="button"> <a style="color: white" href="Creeroffre.jsp">creer</a></button>
                 </div>
             </div>
             <div class="col-sm-6 col-md-5 col-lg-4 item">
@@ -45,7 +45,7 @@
                     <path d="M7.5 1v7h1V1h-1z"/>
                     <path d="M3 8.812a4.999 4.999 0 0 1 2.578-4.375l-.485-.874A6 6 0 1 0 11 3.616l-.501.865A5 5 0 1 1 3 8.812z"/>
                 </svg>
-                    <h3 class="name"><a style="color: white" href="index.jsp">Deconexion</h3><button class="btn btn-primary" type="button">Deconexion</button>
+                    <h3 class="name"><a style="color: white" href="deconnexion.jsp">Deconexion</h3><button class="btn btn-primary" type="button">Deconexion</button>
                 </div>
             </div>
         </div>

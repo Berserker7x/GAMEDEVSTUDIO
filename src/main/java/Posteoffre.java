@@ -1,10 +1,7 @@
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.Part;
+import jakarta.servlet.http.*;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -45,7 +42,7 @@ public class Posteoffre extends HttpServlet {
         String driver = "com.mysql.jdbc.Driver";
 
 
-        String req="INSERT INTO `offre`(`titre`,`description`,`dateexp`,`image`) VALUES (?,?,?,?)";
+        String req="INSERT INTO `offre`(`titre`,`description`,`dateexp`,`image`,`nom_recruteur`) VALUES (?,?,?,?,?)";
         String con = "jdbc:mysql://localhost:3306/gamedevstudio";
 
         try {
@@ -61,7 +58,7 @@ public class Posteoffre extends HttpServlet {
                 stmt.setBlob(4,stream);
             }
 
-
+            stmt.setString(5, (String) request.getParameter("userid"));
 
             Class.forName(driver);
 

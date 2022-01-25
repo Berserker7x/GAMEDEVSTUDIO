@@ -30,8 +30,10 @@
 <body style=" background-image: url('https://gamingbolt.com/wp-content/uploads/2020/09/xbox-series-s-image-5.jpg');"    >
 
 
-<nav class="navbar navbar-light navbar-expand-lg navigation-clean-search">
-    <div class="container"><a class="navbar-brand" href="#"><img
+<nav class="navbar navbar-light navbar-expand-lg navigation-clean-search   bg-light">
+
+    <div class="container">
+        <img
             src = "https://images.frandroid.com/wp-content/uploads/2021/07/android-game-dev-kit-scaled.jpg"
             style="width:150px"/>&nbsp; &nbsp;&nbsp;</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navcol-1">
@@ -40,11 +42,12 @@
                 <li class="nav-item"></li>
                 <li class="nav-item"><a class="nav-link" href="#"></a></li>
             </ul>
-            <form class="me-auto search-form" target="_self">
-                <div class="d-flex align-items-center"><label class="form-label d-flex mb-0" for="search-field"><i class="fa fa-search"></i></label><input style="width:600px" class="form-control search-field" type="search" id="search-field" name="search"></div>
-            </form><a class="btn btn-warning action-button" role="button" href="#">rechercher</a>
+            <form action="rechcercheprofile.jsp" class="me-auto search-form" >
+                <div class="d-flex align-items-center"><label class="form-label d-flex mb-0" for="search-field"><i class="fa fa-search"></i></label><input style="width:600px;margin-bottom:-2%;" class="form-control search-field" type="search" id="search-field" placeholder="rechercher les profils selon la fonction " name="search"></div>
+                <div ><button style="margin-left:650px;margin-top: -5.50%;" class="btn btn-warning action-button" type="submit" role="button" href="#">rechercher</button></div>
+            </form>
 
-            <a style="margin-left: 10px;" class="btn btn-success action-button" role="button" href="#">consulter les postulations</a>
+            <a style="margin-left: 10px;" class="btn btn-success action-button" role="button" href="postulation.jsp">consulter les postulations</a>
             <a style="margin-left: 10px;" href="deconnexion.jsp"  class="btn btn-danger">Deconnexion</a>
         </div>
     </div>
@@ -53,6 +56,8 @@
 
 
 
+<div class="container px-3 mt-4" style="display: flex">
+    <div class="row gx-4 row-cols-2">
 
 <%
 
@@ -81,6 +86,7 @@
             do {
 
                 System.out.println("La connexion a était bien établit!!");
+                String email=res.getString(5);
 
                 String username = res.getString(4);
                 String Description = res.getString(9);
@@ -94,8 +100,10 @@
 
                 out.print("<h4 class='card-title'>" + username + "</h4>"
                         + "<p class='card-text'><b style='color:blue'>Description :</b> " + Description
-                        + "<br> <b style='color:red'>Fonction: </b>" + fct + "</p>" + "<a href='#' class='btn btn-primary stretched-link'> contacter </a>"
+                        + "<br> <b style='color:red'>Fonction: </b>" + fct + "</p>" + "<b style='color:orange'>email: </b> "+email+ "</p>"
                         + "</td></tr></div> </div> </div> </center>");
+
+
 
 
             } while (res.next());
@@ -109,6 +117,7 @@
     }
 %>
 
+</div>
 </div>
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>

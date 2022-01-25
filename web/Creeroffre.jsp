@@ -30,7 +30,7 @@
                 <textarea class="form-control" name="Description" placeholder="Description" rows="14"></textarea>
             </div>
             <input name="dateexp" class="form-control" type="date"><strong style="color:red" class="form-text">Date d'expiration de l'offre</strong>
-
+            <input type="hidden"  value="<%=session.getAttribute("userid")%>" name="userid">;
             <div class="mb-3"></div><input  type="file"  name="imaja" class="form-control">
 
 

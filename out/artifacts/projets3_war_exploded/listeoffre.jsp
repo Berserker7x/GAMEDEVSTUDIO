@@ -59,51 +59,53 @@
 
 
 <%
-
     String driver = "com.mysql.jdbc.Driver";
     String con = "jdbc:mysql://localhost:3306/gamedevstudio";
     String req = "select * from offre ";
-
     String img = null;
     Blob image = null;
     byte[] imgData = null;
-
     try {
         // étape 1: charger la classe de driver
         Class.forName(driver);
-
         // étape 2: créer l'objet de connexion
         Connection conn = DriverManager.getConnection(con, "root", "");
-
         // étape 3: créer l'objet statement
-
         PreparedStatement stmt = conn.prepareStatement(req);
-
         ResultSet res = stmt.executeQuery();
         // étape 4: exécuter la requête
         if (res.next()) {
             do {
-
                 System.out.println("La connexion a était bien établit!!");
-
                 String Titre = res.getString(2);
                 String descrr = res.getString(3);
                 String dateexpp = res.getString(4);
+                String recruteur=res.getString(6);
+                String idoffre=res.getString(1);
                 image = res.getBlob(5);
                 imgData = image.getBytes(1, (int) image.length());
                 String encodedImage = Base64.getEncoder().encodeToString(imgData);
                 img = "data:image/jpg;base64," + encodedImage;
-                out.print(
-                        "<center> <div class='m-4 '> <div class='card' style='width: 500px; border-color: black !important'> <div class='row g-0'> <div class='col-sm-5' style='border-radius: 50% !important; width: 35%'> <img src="+img+" class='card-img-top h-100' alt='...'> </div> <div class='col-sm-7'> <div class='card-body'>");
 
+
+
+
+                out.print("<form action='Postulation' method='post'>" +
+
+                        "<input value='"+idoffre+"' type=\"hidden\"  name='idoffre'/>"+
+                                "<input value='"+recruteur+"' type=\"hidden\"   name='recruteur'/>"+
+                        "<input value='"+Titre+"' type=\"hidden\"  name='Titre'/>"+
+
+
+                        "<center> <div class='m-4 '> <div class='card' style='width: 500px; border-color: black !important'> <div class='row g-0'> <div class='col-sm-5' style='border-radius: 50% !important; width: 35%'> <img src="+img+" class='card-img-top h-100' alt='...'> </div> <div class='col-sm-7'> <div class='card-body'>");
                 out.print("<h4 class='card-title'>" + Titre + "</h4>"
                         + "<p class='card-text'><b style='color:blue'>Description :</b> " + descrr
-                        + "<br> <b style='color:red'>date d'expiration: </b>" + dateexpp + "</p>" + "<a href='#' class='btn btn-primary stretched-link'> contacter </a>"
+                        + "<br> <b style='color:red'>date d'expiration: </b>" + dateexpp + "</p>" + "<button class=\"btn btn-primary\"    type='submit'> postuler </button>"
                         + "</td></tr></div> </div> </div> </center>");
+                out.print("</form>");
 
 
             } while (res.next());
-
         } else {
         }
         // étape 5: fermez l'objet de connexion

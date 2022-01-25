@@ -73,6 +73,7 @@ public class Login extends HttpServlet {
                         //   System.out.println(email1+truePassword+pge);
                      //   request.setAttribute("userird",userid2);
                         session.setAttribute("userid", userid);
+
                         System.out.println(userid);
 
                         RequestDispatcher requestDispatcher = request.getRequestDispatcher("recrutdashboard.jsp");
@@ -81,6 +82,7 @@ public class Login extends HttpServlet {
 
                     } else if (pge.equals("Un concepteur de jeux")) {
                         session.setAttribute("userid", userid);
+
                         System.out.println(userid);
 
                         RequestDispatcher requestDispatcher = request.getRequestDispatcher("gamedeveloper.jsp");
