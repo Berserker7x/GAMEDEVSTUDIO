@@ -63,11 +63,12 @@
 
     String driver = "com.mysql.jdbc.Driver";
     String con = "jdbc:mysql://localhost:3306/gamedevstudio";
-    String req = "select * from user ";
+    String req = "select * from user  where rectouconcept='Un concepteur de jeux' order by nbracc desc ";
 
     String img = null;
     Blob image = null;
     byte[] imgData = null;
+    float note;
 
     try {
         // étape 1: charger la classe de driver
@@ -91,6 +92,7 @@
                 String username = res.getString(4);
                 String Description = res.getString(9);
                 String fct = res.getString(8);
+                note = res.getFloat(11);
                 image = res.getBlob(10);
                 imgData = image.getBytes(1, (int) image.length());
                 String encodedImage = Base64.getEncoder().encodeToString(imgData);
@@ -101,7 +103,7 @@
                 out.print("<h4 class='card-title'>" + username + "</h4>"
                         + "<p class='card-text'><b style='color:blue'>Description :</b> " + Description
                         + "<br> <b style='color:red'>Fonction: </b>" + fct + "</p>" + "<b style='color:orange'>email: </b> "+email+ "</p>"
-                        + "</td></tr></div> </div> </div> </center>");
+                        +"<b style='color:green'>note: </b> "+note+ "</p>"+ "</td></tr></div> </div> </div> </center>");
 
 
 

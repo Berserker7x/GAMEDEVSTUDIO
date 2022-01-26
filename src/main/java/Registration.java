@@ -73,7 +73,15 @@ public class Registration extends HttpServlet {
 
             }
 
+            try{
+                Class.forName(driver);
+                conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/gamedevstudio", "root", "");
+                Statement stmt1 = conn.createStatement();
+                stmt1.executeUpdate("insert into note (`username`) values('"+usernamee+"') ");
 
+            } catch (Exception e) {
+                System.out.println(e);
+            }
 
             response.sendRedirect("index.jsp");
         } catch (Exception e) {

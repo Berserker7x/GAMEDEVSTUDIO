@@ -1,10 +1,4 @@
-<%--
- Created by IntelliJ IDEA.
- User: Yasser
- Date: 1/17/2022
- Time: 2:51 PM
- To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.io.InputStream" %>
 <%@ page import="java.io.FileOutputStream" %>
@@ -20,7 +14,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>listpostulation botsrap</title>
+    <title>listpostulation </title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/Navigation-with-Search.css">
@@ -47,7 +41,7 @@
 
 
         </form>
-        <a style="margin-left: 10px;" href="Note.jsp"  class="btn btn-warning">Noter</a>
+
 
         <a style="margin-left: 10px;" href="deconnexion.jsp"  class="btn btn-danger">Deconnexion</a>
     </div>
@@ -72,7 +66,7 @@
             String con = "jdbc:mysql://localhost:3306/gamedevstudio";
             String nomr= (String) session.getAttribute("userid");
             String username = (String) session.getAttribute("userid");
-            String req = "select * from `postulations` where status=0 and nom_recruteur=\""+username+"\"";
+            String req = "select * from `postulations` where nom_recruteur=\""+username+"\" and status=1 and noteroupas=0;";
 
 
 
@@ -86,7 +80,7 @@
                 // étape 3: créer l'objet statement
 
                 PreparedStatement stmt = conn.prepareStatement(req);
-               // stmt.setString(1,nomr);
+                // stmt.setString(1,nomr);
 
                 ResultSet res = stmt.executeQuery();
                 // étape 4: exécuter la requête
@@ -101,11 +95,15 @@
 
                         out.print(" <strong> Titre d'offre :</strong> <h4 class='card-title'>" + nom_offre + "</h4>"
                                 + "<p class='card-text'><b style='color:blue'>Postuler par :</b> " + postuler_par
-                                + "<br> <b style='color:red'>Nom recruteur: </b>" + nom_recruteur + "</p>" +"<div style=\"display:flex; margin-left:50px;\"><form action='Acceptation' method='post'>"+"<input value='"+postuler_par+"' type=\"hidden\"  name='userid'/>"+
+                                + "<br> <b style='color:red'>Nom recruteur: </b>" + nom_recruteur + "</p>" +"<div style=\"display:flex; margin-left:50px;\"><form action='Noter' method='post'>"+"<input value='"+postuler_par+"' type=\"hidden\"  name='userid'/>"+
                                 "<input value='"+nom_recruteur+"' type=\"hidden\"   name='recruteur'/>"+
-                                "<input value='"+nom_offre+"' type=\"hidden\"  name='Titre'/>"+"<button  class=\"btn btn-success\" style=\"margin-right:3px\"   type='submit'> Accepter </button>   <input style='margin-top:6%; width:160px; margin-left:15px;' class=\"form-control\" type=\"text\" name=\"Message\" placeholder=\"Message d'accept \" /></form>"+"<form action='Refus' method='post'> <input value='"+postuler_par+"' type=\"hidden\"  name='userid'/>" +
-                                "                                <input value='"+nom_recruteur+"' type=\"hidden\"   name='recruteur'/>" +
-                                "                                <input value='"+nom_offre+"' type=\"hidden\"  name='Titre'/><button class=\"btn btn-danger\"    type='submit'> refuser </button></form></div>"
+                                "<input value='"+nom_offre+"' type=\"hidden\"  name='Titre'/>"+"    <select name='Note' class=form-control>\n" +
+                                " <option value=1>1</option>\n" +
+                                " <option value=2>2</option>\n" +
+                                " <option value=3>3</option>\n" +
+                                        " <option value=4>4</option>\n"+
+                                        " <option value=5>5</option>\n"+
+                                "</select><button  class=\"btn btn-success\" style=\"margin-right:3px\"   type='submit'> Noter </button> </form>"
                                 + "</td></tr></div> </div> </div> </center>");
 
 

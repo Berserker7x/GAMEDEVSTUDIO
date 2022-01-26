@@ -47,7 +47,7 @@
 
 
         </form>
-
+        <a style="margin-left: 10px;" href="Note.jsp"  class="btn btn-warning">Noter</a>
 
         <a style="margin-left: 10px;" href="deconnexion.jsp"  class="btn btn-danger">Deconnexion</a>
     </div>
@@ -72,7 +72,7 @@
             String con = "jdbc:mysql://localhost:3306/gamedevstudio";
             String nomr= (String) session.getAttribute("userid");
             String username = (String) session.getAttribute("userid");
-            String req = "select * from `postulations` where nom_recruteur=\""+username+"\"";
+            String req = "select * from `postulations` where status=0 and nom_recruteur=\""+username+"\"";
 
 
 
@@ -103,7 +103,7 @@
                                 + "<p class='card-text'><b style='color:blue'>Postuler par :</b> " + postuler_par
                                 + "<br> <b style='color:red'>Nom recruteur: </b>" + nom_recruteur + "</p>" +"<div style=\"display:flex; margin-left:50px;\"><form action='Acceptation' method='post'>"+"<input value='"+postuler_par+"' type=\"hidden\"  name='userid'/>"+
                                 "<input value='"+nom_recruteur+"' type=\"hidden\"   name='recruteur'/>"+
-                                "<input value='"+nom_offre+"' type=\"hidden\"  name='Titre'/>"+"<button  class=\"btn btn-success\" style=\"margin-right:3px\"   type='submit'> Accepter </button>   <input style='margin-top:6%; width:165px; margin-left:15px;' class=\"form-control\" type=\"text\" name=\"Message\" placeholder=\"Message d'acceptation \" /></form>"+"<form action='Refus' method='post'> <input value='"+postuler_par+"' type=\"hidden\"  name='userid'/>" +
+                                "<input value='"+nom_offre+"' type=\"hidden\"  name='Titre'/>"+"<button  class=\"btn btn-success\" style=\"margin-right:3px\"   type='submit'> Accepter </button>   <input style='margin-top:6%; width:160px; margin-left:15px;' class=\"form-control\" type=\"text\" name=\"Message\" placeholder=\"Message d'accept \" /></form>"+"<form action='Refus' method='post'> <input value='"+postuler_par+"' type=\"hidden\"  name='userid'/>" +
                                 "                                <input value='"+nom_recruteur+"' type=\"hidden\"   name='recruteur'/>" +
                                 "                                <input value='"+nom_offre+"' type=\"hidden\"  name='Titre'/><button class=\"btn btn-danger\"    type='submit'> refuser </button></form></div>"
                                 + "</td></tr></div> </div> </div> </center>");

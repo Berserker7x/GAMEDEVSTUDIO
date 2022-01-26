@@ -33,6 +33,14 @@ public class Acceptation extends HttpServlet {
                 conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/gamedevstudio", "root", "");
                 Statement stmt = conn.createStatement();
                 stmt.executeUpdate("update postulations set status = 1 ,message='"+Message+"' where nom_offre='"+Titre+"' and postuler_par='"+username+"' and nom_recruteur='"+nomrecru+"'");
+               try{
+                   Class.forName(driver);
+                   conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/gamedevstudio", "root", "");
+                   Statement stmt1 = conn.createStatement();
+                   stmt1.executeUpdate("update note set nbracc = nbracc+1   where  username='"+username+"'  ");
+               } catch (Exception e) {
+                   System.out.println(e);
+               }
                 response.sendRedirect("postulation.jsp");
             } catch (Exception e) {
                 System.out.println(e);

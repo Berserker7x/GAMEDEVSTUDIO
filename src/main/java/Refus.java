@@ -28,7 +28,7 @@ public class Refus extends HttpServlet {
 
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/gamedevstudio", "root", "");
             Statement stmt = conn.createStatement();
-            stmt.executeUpdate("update postulations set status = 0 ,message='"+Message+"' where nom_offre='"+Titre+"' and postuler_par='"+username+"' and nom_recruteur='"+nomrecru+"'");
+            stmt.executeUpdate("update postulations set status = 3 ,message='"+Message+"' where nom_offre='"+Titre+"' and postuler_par='"+username+"' and nom_recruteur='"+nomrecru+"'");
             System.out.println(Titre+nomrecru+Message+username+nomrecru);
 
             response.sendRedirect("postulation.jsp");
